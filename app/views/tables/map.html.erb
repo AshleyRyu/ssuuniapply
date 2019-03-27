@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>학교 찾아가자</title>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a2e5540517352a856e5bfdc786493d9"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a2e5540517352a856e5bfdc786493d9&amp;libraries=LIBRARY"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a2e5540517352a856e5bfdc786493d9&amp;libraries=services"></script>
+	<style>
+	#contents {
+		width: 400px;
+		margin: 0 auto;
+	}
+	iframe {
+		border: none;
+		width: 800px;
+		margin: 0 auto;
+	}
+	</style>
+	<link rel="stylesheet" type="text/css" href="fa/font-awesome/css/font-awesome.css">
+        
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <style>
+        .img {
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div class="container mx-0 mx-sm-auto">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/"><span style="color:#ff9933">학</span>생부 <span style="color:#ff9900">종</span>합전형 알림<span style="color:#ff9900">이</span></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> 게시판 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">학종이란?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">프로필</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 헤더부분 입니다.-->
+  <header style="background-color:#ff9933"; "width:1000px"; "height:150px";>
+        <div class="container" style="padding:50px";> 
+  
+        <img style="weight:200px; height:100px; float:right" src ="/assets/1234.png">
+             <h1 style="color:white";>날짜 검색 결과 및 지도 </h1>
+        </div>
+    </header>
+  
+  <ol class="breadcrumb">
+  <div class="container">
+     <div class="row-center">
+     <div class="col-xs-12 ">
+   <h5>1번째 학교 검색 결과</h5> 
+    <div class="center">
+    
+    <table class="table table-hover">
+        
+     <tr>
+            <th>자기소개서마감</th>
+            <th>1차 발표</th>
+            <th>면접</th>
+            <th>최종발표</th>
+            
+         </tr>
+         
+          <tr>
+            <th><%= @result.close =%></th>
+            <th><%= @result.first_result =%></th>
+            <th><%= @result.interview =%></th>
+            <th><%= @result.finale_rusult =%></th>
+            
+         </tr>
+         
+    </table>
+</div>
+  </div>
+        
+    
+   
+ 
+      </div>
+      <div class="row">
+    <div class="col">
+    
+    </div>
+    <div class="col-6">
+      
+    </div>
+   
+    </div>
+  </div>
+     
+</ol>
+
+   
+    <div class="containar pt-3">
+    <div class="row">
+     
+      <div class="col-6 col-md-4">
+      
+            
+    </div>
+    
+      <div class="center">
+          
+            
+             <button type="button" class="btn btn-warning">다시 확인하기</button>
+         
+      <div class="col-6 col-md-4">
+    
+    <!-- /input-group -->
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<div id="contents">
+	<div id="map" style="width:800px;height:500px;"></div>
+
+	<%= content_tag(:iframe,'대중교통 길찾기', width: '100%', height: 800, src: "http://map.daum.net/link/to/#{@result.university},#{@result.x_point}, #{@result.y_point}") %>
+
+	<div class="form-group" action='/link/to' method='post'>
+	  <%= link_to '카카오내비 앱으로 길찾기', navi_path(university: @result.university), class: "btn btn-default btn-sm"%>
+	</div>
+	
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(<%= @result.x_point %>, <%= @result.y_point %>), // 지도의 중심좌표
+		        level: 4, // 지도의 확대 레벨
+		        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+		    }; 
+
+		// 지도를 생성한다 
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+
+		// 실시간교통 타일 이미지 추가
+		map.addOverlayMapTypeId(daum.maps.MapTypeId.TRAFFIC); 
+
+		// 지도 타입 변경 컨트롤을 생성한다
+		var mapTypeControl = new daum.maps.MapTypeControl();
+
+		// 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+		map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);	
+
+		// 지도에 확대 축소 컨트롤을 생성한다
+		var zoomControl = new daum.maps.ZoomControl();
+
+		// 지도의 우측에 확대 축소 컨트롤을 추가한다
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+		// 지도 확대 레벨 변화 이벤트를 등록한다
+		daum.maps.event.addListener(map, 'zoom_changed', function () {
+			console.log('지도의 현재 확대레벨은 ' + map.getLevel() +'레벨 입니다.');
+		});
+
+		// 지도 영역 변화 이벤트를 등록한다
+		daum.maps.event.addListener(map, 'bounds_changed', function () {
+			var mapBounds = map.getBounds(),
+				message = '지도의 남서쪽, 북동쪽 영역좌표는 ' +
+							mapBounds.toString() + '입니다.';
+
+			console.log(message);	
+		});
+
+		// 지도 클릭 이벤트를 등록한다 (좌클릭 : click, 우클릭 : rightclick, 더블클릭 : dblclick)
+		daum.maps.event.addListener(map, 'click', function (mouseEvent) {
+			console.log('지도에서 클릭한 위치의 좌표는 ' + mouseEvent.latLng.toString() + ' 입니다.');
+		});	
+
+		// 지도 드래깅 이벤트를 등록한다 (드래그 시작 : dragstart, 드래그 종료 : dragend)
+		daum.maps.event.addListener(map, 'drag', function () {
+			var message = '지도를 드래그 하고 있습니다. ' + 
+							'지도의 중심 좌표는 ' + map.getCenter().toString() +' 입니다.';
+			console.log(message);
+		});
+
+		// 지도에 마커를 생성하고 표시한다
+		var marker = new daum.maps.Marker({
+		    position: new daum.maps.LatLng(<%= @result.x_point %>, <%= @result.y_point %>), // 마커의 좌표
+		    map: map // 마커를 표시할 지도 객체
+		});
+
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>차타고 학교가기</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+</head>
+<body>
+<a id="navi" href="#" onclick="navi();">
+<img src="http://postfiles7.naver.net/MjAxNzA4MTdfMTEy/MDAxNTAyOTYzMDU0ODc5.14K2cm17ahC2UcHNZytywq6nUA2MNW7DOtzMs08XAZ0g.XENbGg12Vu67N9RcaUeC5jvcvsa73kyeyniXapeb90cg.PNG.ryu_0108/navihak.png?type=w773"/>
+</a>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('3a2e5540517352a856e5bfdc786493d9');
+    // 카카오 로그인 버튼을 생성합니다.
+    function navi(){
+        Kakao.Navi.start({
+           name: "<%= @car.university %>",
+            x: <%= @car.y_point %>,
+            y: <%= @car.x_point %>,
+            coordType: 'wgs84'
+        });
+    }
+  //]]>
+</script>
+<div class="form-group" action='/find' method='post'>
+  <a class="btn btn-default btn-sm" onclick="history.go(-1);">돌 아 가 기</a>
+</div>
+</body>
+</html>
